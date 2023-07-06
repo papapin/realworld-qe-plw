@@ -1,3 +1,4 @@
+import { EMAIL, PASSWORD, USER_NAME } from '../../../environment.config'
 import { expect, test } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
@@ -24,5 +25,13 @@ test.describe('Authorisation', () => {
 		await expect(page.getByText('Username is required')).toBeVisible()
 		await expect(page.getByText('Email is required')).toBeVisible()
 		await expect(page.getByText('Password is required')).toBeVisible()
+	})
+	test('Should not be able sign up with  an already registered email address @QALA-6', async ({ page }) => {
+		await page.getByRole('link', { name: 'Sign up' }).click()
+		await page.getByPlaceholder('Your Name').type(USER_NAME, { delay: 100 })
+		await page.getByPlaceholder('Email').type(EMAIL, { delay: 100 })
+		await page.getByPlaceholder('Password').type(PASSWORD, { delay: 100 })
+		await page.getByRole('button', { name: 'Sign up' }).click()
+		await expect(page.getByText('Email already exists.. try logging in')).toBeVisible()
 	})
 })
