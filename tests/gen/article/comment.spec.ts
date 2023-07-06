@@ -17,7 +17,7 @@ test.describe('Article', () => {
 	test('should be able to write and post comment under article @QALA-33', async ({ page }) => {
 		await login(page, EMAIL, PASSWORD)
 		await article(page, newArticle, aboutArticle, writeArticle, tags)
-		await page.getByRole('link', { name: newArticle }).click()
+		await page.getByRole('link', { name: newArticle })
 		await comment(page, commentText)
 		await expect(page.getByRole('paragraph').filter({ hasText: commentText })).toBeVisible()
 	})
