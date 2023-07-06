@@ -30,7 +30,7 @@ test.describe('Authorisation', () => {
 	})
 	test('Should not be able sign up with  an already registered email address @QALA-6', async ({ page }) => {
 		await page.getByRole('link', { name: 'Sign up' }).click()
-		await page.getByPlaceholder('Your Name').type(USER_NAME, { delay: 100 })
+		await page.getByPlaceholder('Your Name').type(newUser, { delay: 100 })
 		await page.getByPlaceholder('Email').type(EMAIL, { delay: 100 })
 		await page.getByPlaceholder('Password').type(PASSWORD, { delay: 100 })
 		await page.getByRole('button', { name: 'Sign up' }).click()
