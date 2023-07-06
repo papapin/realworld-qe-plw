@@ -1,13 +1,15 @@
 import { EMAIL, PASSWORD, USER_NAME } from '../../../environment.config'
 import { expect, test } from '@playwright/test'
 
+import { uid } from 'uid'
+
 test.beforeEach(async ({ page }) => {
 	await page.goto('/')
 })
 
 test.describe('Authorisation', () => {
-	const newUser = Date.now()
-	const newEmail = Date.now()
+	const newUser = uid(5)
+	const newEmail = uid(5)
 	test('Registrated with valid credention @QALA-2', async ({ page }) => {
 		await page.getByRole('link', { name: 'Sign up' }).click()
 		await page.getByPlaceholder('Your Name').type(`myname${newUser}`, { delay: 100 })

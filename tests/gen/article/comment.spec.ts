@@ -3,14 +3,15 @@ import { USER_NAME, PASSWORD, EMAIL } from '../../../environment.config'
 import { login } from '../../../src/helpers/ui/login-helpers'
 import { article } from '../../../src/helpers/ui/article-helpers'
 import { comment } from '../../../src/helpers/ui/comment-helper'
+import { uid } from 'uid'
 
 test.beforeEach(async ({ page }) => {
 	await page.goto('/')
 })
 
 test.describe('Article', () => {
-	const newArticle = 'article' + Date.now()
-	const aboutArticle = 'article' + Date.now()
+	const newArticle = 'article' + uid(5)
+	const aboutArticle = 'article' + uid(5)
 	const writeArticle = 'some text'
 	const tags = 'article'
 	const commentText = 'nice article'
