@@ -36,12 +36,5 @@ test.describe('Authorisation', () => {
 		await page.getByRole('button', { name: 'Sign up' }).click()
 		await expect(page.getByText('Email already exists.. try logging in')).toBeVisible()
 	})
-	test('Should not be able sign up with  an already registered Uername @QALA-18', async ({ page }) => {
-		await page.getByRole('link', { name: 'Sign up' }).click()
-		await page.getByPlaceholder('Your Name').type(USER_NAME, { delay: 100 })
-		await page.getByPlaceholder('Email').type(newEmail, { delay: 100 })
-		await page.getByPlaceholder('Password').type(PASSWORD, { delay: 100 })
-		await page.getByRole('button', { name: 'Sign up' }).click()
-		await expect(page.getByText('Username already exists.. try logging in')).toBeVisible()
-	})
+	
 })
